@@ -3,54 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old Hacker Names</title>
+    <title>Fancy Text Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin-top: 50px;
         }
-        #hackerNames {
+        #output {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 24px;
         }
-        #addNameForm {
-            margin-top: 20px;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .input-group {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Old Hacker Names</h1>
-    <div id="hackerNames">
-        <!-- Hacker names will be inserted here by JavaScript -->
-    </div>
-    <div id="addNameForm">
-        <input type="text" id="newName" placeholder="Enter a hacker name">
-        <button onclick="addHackerName()">Add Name</button>
+    <div class="container">
+        <h1>Fancy Text Generator</h1>
+        <div class="input-group">
+            <textarea id="inputText" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
+        </div>
+        <div class="input-group">
+            <select id="styleSelector">
+                <option value="normal">Normal</option>
+                <option value="bold">Bold</option>
+                <option value="italic">Italic</option>
+                <option value="underline">Underline</option>
+                <option value="strike">Strike</option>
+                <option value="uppercase">Uppercase</option>
+                <option value="lowercase">Lowercase</option>
+                <option value="rainbow">Rainbow</option>
+                <option value="neon">Neon</option>
+                <option value="glow">Glow</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <button onclick="generateFancyText()">Generate Fancy Text</button>
+        </div>
+        <div id="output"></div>
     </div>
 
     <script>
-        // Initialize an array to store hacker names
-        let hackerNames = [];
+        function generateFancyText() {
+            const inputText = document.getElementById('inputText').value;
+            const styleSelector = document.getElementById('styleSelector').value;
+            let outputText = inputText;
 
-        // Function to display hacker names
-        function displayHackerNames() {
-            const hackerNamesDiv = document.getElementById('hackerNames');
-            hackerNamesDiv.innerHTML = hackerNames.map(name => `<p>${name}</p>`).join('');
-        }
-
-        // Function to add a new hacker name
-        function addHackerName() {
-            const newName = document.getElementById('newName').value;
-            if (newName.trim() !== "") {
-                hackerNames.push(newName);
-                displayHackerNames();
-                document.getElementById('newName').value = "";
+            switch (styleSelector) {
+                case 'bold':
+                    outputText = `<strong>${outputText}</strong>`;
+                    break;
+                case 'italic':
+                    outputText = `<em>${outputText}</em>`;
+                    break;
+                case 'underline':
+                    outputText = `<u>${outputText}</u>`;
+                    break;
+                case 'strike':
+                    outputText = `<strike>${outputText}</strike>`;
+                    break;
+                case 'uppercase':
+                    outputText = outputText.toUpperCase();
+                    break;
+                case 'lowercase':
+                    outputText = outputText.toLowerCase();
+                    break;
+                case 'rainbow':
+                    outputText = `<span style="background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${outputText}</span>`;
+                    break;
+                case 'neon':
+                    outputText = `<span style="color: #00ff00; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 25px #00ff00;">${outputText}</span>`;
+                    break;
+                case 'glow':
+                    outputText = `<span style="color: #ff0000; text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000;">${outputText}</span>`;
+                    break;
+                default:
+                    outputText = inputText;
             }
-        }
 
-        // Call the function to display the names when the page loads
-        window.onload = displayHackerNames;
+            document.getElementById('output').innerHTML = outputText;
+        }
     </script>
 </body>
 </html>
