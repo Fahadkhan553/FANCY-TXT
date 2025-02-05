@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old Hacker Names</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #hackerNames {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #addNameForm {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Old Hacker Names</h1>
+    <div id="hackerNames">
+        <!-- Hacker names will be inserted here by JavaScript -->
+    </div>
+    <div id="addNameForm">
+        <input type="text" id="newName" placeholder="Enter a hacker name">
+        <button onclick="addHackerName()">Add Name</button>
+    </div>
+
+    <script>
+        // Initialize an array to store hacker names
+        let hackerNames = [];
+
+        // Function to display hacker names
+        function displayHackerNames() {
+            const hackerNamesDiv = document.getElementById('hackerNames');
+            hackerNamesDiv.innerHTML = hackerNames.map(name => `<p>${name}</p>`).join('');
+        }
+
+        // Function to add a new hacker name
+        function addHackerName() {
+            const newName = document.getElementById('newName').value;
+            if (newName.trim() !== "") {
+                hackerNames.push(newName);
+                displayHackerNames();
+                document.getElementById('newName').value = "";
+            }
+        }
+
+        // Call the function to display the names when the page loads
+        window.onload = displayHackerNames;
+    </script>
+</body>
+</html>
