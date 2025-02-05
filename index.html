@@ -7,88 +7,48 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #output {
-            margin-top: 20px;
-            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .input-group {
-            margin-bottom: 10px;
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Fancy Text Generator</h1>
-        <div class="input-group">
-            <textarea id="inputText" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
-        </div>
-        <div class="input-group">
-            <select id="styleSelector">
-                <option value="normal">Normal</option>
-                <option value="bold">Bold</option>
-                <option value="italic">Italic</option>
-                <option value="underline">Underline</option>
-                <option value="strike">Strike</option>
-                <option value="uppercase">Uppercase</option>
-                <option value="lowercase">Lowercase</option>
-                <option value="rainbow">Rainbow</option>
-                <option value="neon">Neon</option>
-                <option value="glow">Glow</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <button onclick="generateFancyText()">Generate Fancy Text</button>
-        </div>
-        <div id="output"></div>
+        <input type="text" id="inputText" placeholder="Enter your text here">
+        <button onclick="generateFancyText()">Generate Fancy Text</button>
+        <div class="output" id="outputText"></div>
     </div>
 
     <script>
         function generateFancyText() {
             const inputText = document.getElementById('inputText').value;
-            const styleSelector = document.getElementById('styleSelector').value;
-            let outputText = inputText;
-
-            switch (styleSelector) {
-                case 'bold':
-                    outputText = `<strong>${outputText}</strong>`;
-                    break;
-                case 'italic':
-                    outputText = `<em>${outputText}</em>`;
-                    break;
-                case 'underline':
-                    outputText = `<u>${outputText}</u>`;
-                    break;
-                case 'strike':
-                    outputText = `<strike>${outputText}</strike>`;
-                    break;
-                case 'uppercase':
-                    outputText = outputText.toUpperCase();
-                    break;
-                case 'lowercase':
-                    outputText = outputText.toLowerCase();
-                    break;
-                case 'rainbow':
-                    outputText = `<span style="background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${outputText}</span>`;
-                    break;
-                case 'neon':
-                    outputText = `<span style="color: #00ff00; text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #00ff00, 0 0 25px #00ff00;">${outputText}</span>`;
-                    break;
-                case 'glow':
-                    outputText = `<span style="color: #ff0000; text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000, 0 0 25px #ff0000;">${outputText}</span>`;
-                    break;
-                default:
-                    outputText = inputText;
-            }
-
-            document.getElementById('output').innerHTML = outputText;
+            const outputText = document.getElementById('outputText');
+            const fancyText = inputText.split('').map(char => {
+                if (char === ' ') return '&#x2003;'; // Non-breaking space
+                return `&#${char.charCodeAt(0).toString(16)};`;
+            }).join('');
+            outputText.innerHTML = fancyText;
         }
     </script>
 </body>
