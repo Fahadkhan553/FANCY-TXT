@@ -1,20 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
-
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://i.postimg.cc/h4TkcLjf/IMG-20241231-WA0393-2.jpg');
+    background-image: url('https://i.postimg.cc/Dynk0rVy/Screenshot-20250205-170217.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    color: black;
+    color: white;
     overflow-x: hidden;
 }
 
 header {
-    background-color: rgba(#8B0000);
-    color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: black; /* Changed from white to black */
     padding: 1em 0;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
@@ -31,7 +29,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: black;
+    color: black; /* Changed from white to black */
     text-decoration: none;
     font-weight: 700;
 }
@@ -50,11 +48,12 @@ section {
     padding: 1em;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: black; /* Changed from white to black */
 }
 
 footer {
     background-color: rgba(0, 0, 0, 0.5);
-    color: black;
+    color: black; /* Changed from white to black */
     text-align: center;
     padding: 1em 0;
     position: fixed;
@@ -67,8 +66,8 @@ footer {
     display: inline-block;
     margin: 0.5em 0;
     padding: 0.5em 1em;
-    background-color: #E52B50;
-    color: white;
+    background-color: #25D366;
+    color: black; /* Changed from white to black */
     text-decoration: none;
     border-radius: 5px;
     font-size: 1em;
