@@ -1,48 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🆃🅷🅴 🅾🅻🅳 🅷🅰🅲🅺🅴🆁</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">🅷🅾🅼🅴</a></li>
-                <li><a href="#whatsapp">🆆🅷🅰🆃🆂🅰🅿🅿</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="home">
-            <h1>🆃🅷🅴 🅾🅻🅳 🅷🅰🅲🅺🅴🆁</h1>
-            <p>KING OF HACKING</p>
-        </section>
-        <section id="about">
-            <h2>ABOUT</h2>
-            <p>WE ARE VENOM 😈</p>
-        </section>
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>CLICK ON JOIN WHATSAPP</p>
-        </section>
-        <section id="whatsapp">
-            <h2>Join Us on WhatsApp</h2>
-            <p>Stay connected with us on WhatsApp:</p>
-            <a href="https://chat.whatsapp.com/JDyHu8PVMeY7GDZ5PJ3aAL" target="_blank" class="whatsapp-button">Join WhatsApp Group</a>
-            <a href="https://whatsapp.com/channel/0029VavHzv259PwTIz1XxJ09" target="_blank" class="whatsapp-button">Join WhatsApp Channel</a>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; THE OLD HACKER All rights reserved.</p>
-    </footer>
-    <!-- Watermark -->
-    <div class="watermark">
-        <img src="https://i.postimg.cc/Dynk0rVy/Screenshot-20250205-170217.png" alt="Watermark">
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Send OTP</title>
+       <style>
+           body {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+               background-color: #f0f0f0;
+               font-family: Arial, sans-serif;
+           }
+           form {
+               background-color: white;
+               padding: 20px;
+               border-radius: 10px;
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           }
+           input[type="text"] {
+               padding: 10px;
+               font-size: 16px;
+               width: 100%;
+               margin-bottom: 10px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+           }
+           button {
+               padding: 10px 20px;
+               font-size: 16px;
+               background-color: #007bff;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               cursor: pointer;
+           }
+           button:hover {
+               background-color: #0056b3;
+           }
+           #message {
+               margin-top: 10px;
+               font-size: 14px;
+               color: green;
+           }
+       </style>
+   </head>
+   <body>
+
+       <form onsubmit="sendOTP(event)">
+           <label for="phone">Enter Phone Number:</label>
+           <input type="text" id="phone" placeholder="e.g., +1234567890" required>
+           <button type="submit">Send OTP</button>
+           <div id="message"></div>
+       </form>
+
+       <script>
+           async function sendOTP(event) {
+               event.preventDefault();
+               const phoneNumber = document.getElementById('phone').value;
+               const messageDiv = document.getElementById('message');
+
+               try {
+                   const response = await fetch('http://localhost:3000/send-otp', {
+                       method: 'POST',
+                       headers: { 'Content-Type': 'application/json' },
+                       body: JSON.stringify({ phoneNumber }),
+                   });
+                   const result = await response.json();
+
+                   if (result.success) {
+                       messageDiv.textContent = 'OTP sent successfully!';
+                   } else {
+                       messageDiv.textContent = 'Failed to send OTP.';
+                   }
+               } catch (error) {
+                   console.error(error);
+                   messageDiv.textContent = 'An error occurred.';
+               }
+           }
+       </script>
+
+   </body>
+   </html>
